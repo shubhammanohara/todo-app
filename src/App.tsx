@@ -1,30 +1,31 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 
-import './App.css'
-import Footer from './components/footer'
-import { PlusIcon } from './components/icons'
-import Navbar from './components/navbar'
-import TodoList from './components/todoList'
-import AddTask from './components/addTask'
-import { LayoutType, STORAGE_KEY, Task } from './types/common'
+import './App.css';
+import Footer from './components/footer';
+import { PlusIcon } from './components/icons';
+import Navbar from './components/navbar';
+import TodoList from './components/todoList';
+import AddTask from './components/addTask';
+import { LayoutType, STORAGE_KEY, Task } from './types/common';
 
 function App() {
-  const [currentLayout, setCurrentLayout] = useState<LayoutType>('todo')
-  const [editId, setEditId] = useState<string>('')
-  const [deleteId, setDeleteId] = useState<string>('')
+  const [currentLayout, setCurrentLayout] = useState<LayoutType>('todo');
+  const [editId, setEditId] = useState<string>('');
+  const [deleteId, setDeleteId] = useState<string>('');
+  const isActionEnabled = editId || deleteId;
 
   const [tasks, setTasks] = useState<Task[]>(() => {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY)
-      return saved ? JSON.parse(saved) : []
+      const saved = localStorage.getItem(STORAGE_KEY);
+      return saved ? JSON.parse(saved) : [];
     } catch {
-      return []
+      return [];
     }
-  })
+  });
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks))
-  }, [tasks])
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+  }, [tasks]);
 
   return (
     <>
@@ -35,18 +36,27 @@ function App() {
       <div className="md:hero bg-base-100 min-h-screen">
         <div className="md:hero-content">
           <div className="md:max-w-md md:min-w-md">
-            {currentLayout === 'todo' && (
+            {currentLayout === 'todo' && !editId && !deleteId && (
               <TodoList
                 tasks={tasks}
                 setEditId={setEditId}
                 setDeleteId={setDeleteId}
               />
             )}
-            {currentLayout === 'addNew' && (
+            {currentLayout === 'addNew' && !editId && !deleteId && (
               <AddTask
                 tasks={tasks}
                 setTasks={setTasks}
                 setCurrentLayout={setCurrentLayout}
+              />
+            )}
+            {(editId || deleteId) && (
+              <AddTask
+                tasks={tasks}
+                setTasks={setTasks}
+                setCurrentLayout={setCurrentLayout}
+                editId={editId}
+                setEditId={setEditId}
               />
             )}
           </div>
@@ -64,7 +74,7 @@ function App() {
       </div>
       <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

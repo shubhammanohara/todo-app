@@ -1,15 +1,15 @@
-import React from 'react'
-import SearchBar from '../searchBar'
-import Accordion from '../accordion'
-import Card from '../card'
-import { Task } from '../../types/common'
+import React from 'react';
+import SearchBar from '../searchBar';
+import Accordion from '../accordion';
+import Card from '../card';
+import { Task } from '../../types/common';
 
 interface LayoutProps {
-  tasks: Task[]
-  filteredTasks: { inProgress: Task[]; completed: Task[]; pending: Task[] }
-  setSearch: React.Dispatch<React.SetStateAction<string>>
-  setEditId: React.Dispatch<React.SetStateAction<string>>
-  setDeleteId: React.Dispatch<React.SetStateAction<string>>
+  tasks: Task[];
+  filteredTasks: { inProgress: Task[]; completed: Task[]; pending: Task[] };
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
+  setEditId: React.Dispatch<React.SetStateAction<string>>;
+  setDeleteId: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const Layout: React.FC<LayoutProps> = ({
@@ -19,7 +19,7 @@ const Layout: React.FC<LayoutProps> = ({
   setEditId,
   setDeleteId,
 }) => {
-  const currentDate = new Date().toLocaleDateString('en-CA')
+  const currentDate = new Date().toLocaleDateString('en-CA');
   const renderInprogressTasks = () => {
     return filteredTasks.inProgress.map((task) => (
       <Card
@@ -32,8 +32,8 @@ const Layout: React.FC<LayoutProps> = ({
         setEditId={setEditId}
         setDeleteId={setDeleteId}
       />
-    ))
-  }
+    ));
+  };
   const renderCompletedTasks = () => {
     return filteredTasks.completed.map((task) => (
       <Card
@@ -46,8 +46,8 @@ const Layout: React.FC<LayoutProps> = ({
         setEditId={setEditId}
         setDeleteId={setDeleteId}
       />
-    ))
-  }
+    ));
+  };
   const renderPendingTasks = () => {
     return filteredTasks.pending.map((task) => (
       <Card
@@ -60,8 +60,8 @@ const Layout: React.FC<LayoutProps> = ({
         setEditId={setEditId}
         setDeleteId={setDeleteId}
       />
-    ))
-  }
+    ));
+  };
   return (
     <div className="p-2">
       <SearchBar setSearch={setSearch} />
@@ -80,7 +80,7 @@ const Layout: React.FC<LayoutProps> = ({
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

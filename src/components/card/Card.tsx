@@ -1,14 +1,14 @@
-import { TaskStatus } from '../../types/common'
-import Layout from './Layout'
+import { TaskStatus } from '../../types/common';
+import Layout from './Layout';
 
 interface CardProps {
-  title: string
-  content: string
-  status: TaskStatus
-  date: string
-  setEditId: React.Dispatch<React.SetStateAction<string>>
-  setDeleteId: React.Dispatch<React.SetStateAction<string>>
-  id: string
+  title: string;
+  content: string;
+  status: TaskStatus;
+  date: string;
+  setEditId: React.Dispatch<React.SetStateAction<string>>;
+  setDeleteId: React.Dispatch<React.SetStateAction<string>>;
+  id: string;
 }
 const Card: React.FC<CardProps> = ({
   title,
@@ -20,12 +20,12 @@ const Card: React.FC<CardProps> = ({
   id,
 }) => {
   const onEditClick = () => {
-    setEditId(id)
-  }
+    setEditId(id);
+  };
 
   const onDeleteClick = () => {
-    setDeleteId(id)
-  }
+    setDeleteId(id);
+  };
 
   return (
     <Layout
@@ -36,7 +36,7 @@ const Card: React.FC<CardProps> = ({
       onEditClick={onEditClick}
       onDeleteClick={onDeleteClick}
     />
-  )
-}
+  );
+};
 
-export default Card
+export default Card;

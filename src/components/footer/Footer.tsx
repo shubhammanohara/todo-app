@@ -1,7 +1,7 @@
-import Layout from "./Layout"
+import Layout from './Layout';
 
 const Footer = () => {
-    return <Layout />
-}
+  return <Layout />;
+};
 
 export default Footer;
