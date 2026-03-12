@@ -6,3 +6,12 @@ export interface IconProps {
 }
 
 export type LayoutType = "todo" | "addNew";
+
+export type TaskStatus = "inProgress" | "pending" | "completed";
+
+export interface Task {
+    id: string;
+    title: string;
+    description: string;
+    status: TaskStatus;
+}

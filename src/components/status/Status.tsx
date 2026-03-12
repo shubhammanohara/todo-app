@@ -1,6 +1,7 @@
+import { TaskStatus } from "../../types/common";
 
 interface StatusProps {
-    status: "inProgress" | "completed" | "pending";
+    status: TaskStatus;
 }
 const Status: React.FC<StatusProps> = ({ status }) => {
     switch (status) {

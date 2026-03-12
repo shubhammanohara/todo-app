@@ -22,10 +22,12 @@ const Layout: React.FC<LayoutProps> = ({ title, content, date }) => {
                             <Status status="inProgress" /></div>
                     </div>
                     <p className="text-base">{content}</p>
-                    <p className="text-xs text-muted">{date}</p>
-                    <div className="hidden group-hover:flex card-actions justify-end">
-                        <button className="btn btn-circle btn-ghost"><EditIcon width="16" height="16" /></button>
-                        <button className="btn btn-circle btn-ghost"><TrashIcon width="24" height="24" /></button>
+                    <div className="flex items-center justify-between mt-2">
+                        <p className="text-xs text-muted">{date}</p>
+                        <div className="card-actions justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button className="btn btn-circle btn-ghost"><EditIcon width="16" height="16" /></button>
+                            <button className="btn btn-circle btn-ghost"><TrashIcon width="24" height="24" /></button>
+                        </div>
                     </div>
                 </div>
             </div>

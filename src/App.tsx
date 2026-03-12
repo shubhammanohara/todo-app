@@ -6,17 +6,22 @@ import { PlusIcon } from './components/icons';
 import Navbar from './components/navbar';
 import TodoList from './components/todoList';
 import AddTask from './components/addTask';
-import { LayoutType } from './types/common';
+import { LayoutType, Task } from './types/common';
+import { data } from './public/data';
 
 function App() {
   const [currentLayout, setCurrentLayout] = useState<LayoutType>("todo");
+  const [tasks, setTasks] = useState<Task[]>(data);
+
+  console.log(tasks);
+
 
   const renderLayout = () => {
     switch (currentLayout) {
       case "todo":
-        return <TodoList />;
+        return <TodoList tasks={tasks} />;
       case "addNew":
-        return <AddTask />;
+        return <AddTask tasks={tasks} setTasks={setTasks} setCurrentLayout={setCurrentLayout}/>;
       default:
         return null;
     }
