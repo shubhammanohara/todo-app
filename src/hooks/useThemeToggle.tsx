@@ -4,9 +4,9 @@ const useThemeToggle = () => {
     const [theme, setTheme] = useState(() => {
         if (typeof window !== 'undefined') {
             const storedTheme = localStorage.getItem('theme');
-            return storedTheme || 'cmyk';
+            return storedTheme || 'corporate';
         }
-        return 'cmyk';
+        return 'corporate';
     });
 
     useEffect(() => {
@@ -15,7 +15,7 @@ const useThemeToggle = () => {
     }, [theme]);
 
     const toggleTheme = () => {
-        setTheme((prevTheme) => (prevTheme === 'cmyk' ? 'synthwave' : 'cmyk'));
+        setTheme((prevTheme) => (prevTheme === 'corporate' ? 'dark' : 'corporate'));
     };
 
     return { theme, toggleTheme };

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @plugin "daisyui" {
-  themes: cmyk --default, synthwave --prefersdark;
+  themes: corporate --default, dark --prefersdark;
   root: ":root";
   logs: true;
 }

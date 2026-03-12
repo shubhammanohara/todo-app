@@ -4,3 +4,5 @@ export interface IconProps {
     height?: number | string;
     colour?: string;
 }
+
+export type LayoutType = "todo" | "addNew";
