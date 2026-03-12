@@ -15,3 +15,5 @@ export interface Task {
     description: string;
     status: TaskStatus;
 }
+
+export const STORAGE_KEY = "todo_tasks";

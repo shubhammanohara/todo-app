@@ -1,4 +1,8 @@
-const Layout: React.FC = () => {
+interface LayoutProps {
+    setSearch: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const Layout: React.FC<LayoutProps> = ({ setSearch }) => {
     return (
         <div className="p-2">
             <label className="input w-full">
@@ -14,7 +18,7 @@ const Layout: React.FC = () => {
                         <path d="m21 21-4.3-4.3"></path>
                     </g>
                 </svg>
-                <input type="search" placeholder="Search" />
+                <input type="search" placeholder="Search" onChange={(e) => setSearch(e.target.value)} />
             </label>
         </div>
     )

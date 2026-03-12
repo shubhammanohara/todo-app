@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import Layout from './Layout'
 import { LayoutType, Task, TaskStatus } from '../../types/common';
 
@@ -13,7 +13,7 @@ const AddTask: React.FC<AddTaskProps> = ({ tasks, setTasks, setCurrentLayout }) 
     const [description, setDescription] = useState<string>("");
     const [status, setStatus] = useState<TaskStatus | undefined>(undefined);
 
-    const onAdd = () => {
+    const onAdd = useCallback(() => {
         if (title !== "" && description !== "" && status) {
             setTasks((prev) => [...prev, {
                 id: crypto.randomUUID(),
@@ -24,8 +24,10 @@ const AddTask: React.FC<AddTaskProps> = ({ tasks, setTasks, setCurrentLayout }) 
             setTitle("");
             setDescription("");
             setStatus(undefined);
+            setCurrentLayout("todo");
         }
-    }
+    }, [title, description, status, setTasks, setCurrentLayout])
+
     return (
         <Layout
             title={title}
@@ -35,6 +37,7 @@ const AddTask: React.FC<AddTaskProps> = ({ tasks, setTasks, setCurrentLayout }) 
             status={status}
             setStatus={setStatus}
             onAdd={onAdd}
+            onCancel={() => setCurrentLayout("todo")}
         />
     )
 }
