@@ -19,7 +19,7 @@ const Accordion: React.FC<AccordionProps> = ({
     <Layout open={open} setOpen={setOpen} title={title}>
       <div className="collapse-title font-semibold">{title}</div>
       <div className="collapse-content text-sm">
-        {hasContent ? content : 'No data'}
+        {hasContent ? content : 'No tasks in this section.'}
       </div>
     </Layout>
   );
