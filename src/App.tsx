@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import './App.css';
 import Footer from './components/footer';
@@ -6,13 +6,15 @@ import { PlusIcon } from './components/icons';
 import Navbar from './components/navbar';
 import TodoList from './components/todoList';
 import AddTask from './components/addTask';
+import Modal from './components/warningModal';
 import { LayoutType, STORAGE_KEY, Task } from './types/common';
 
 function App() {
   const [currentLayout, setCurrentLayout] = useState<LayoutType>('todo');
   const [editId, setEditId] = useState<string>('');
   const [deleteId, setDeleteId] = useState<string>('');
-  const isActionEnabled = editId || deleteId;
+
+  console.log('deleteId', deleteId);
 
   const [tasks, setTasks] = useState<Task[]>(() => {
     try {
@@ -27,6 +29,22 @@ function App() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
   }, [tasks]);
 
+  useEffect(() => {
+    if (deleteId) {
+      (document.getElementById('my_modal_1') as HTMLDialogElement)?.showModal();
+      // setTasks((prev) => prev.filter((t) => t.id !== deleteId));
+      // setDeleteId('');
+    }
+  }, [deleteId]);
+
+  const onConfirmDelete = useCallback(() => {
+    if (deleteId) {
+      setTasks((prev) => prev.filter((t) => t.id !== deleteId));
+      (document.getElementById('my_modal_1') as HTMLDialogElement)?.close();
+      setDeleteId('');
+    }
+  }, [deleteId]);
+
   return (
     <>
       <Navbar
@@ -36,21 +54,21 @@ function App() {
       <div className="md:hero bg-base-100 min-h-screen">
         <div className="md:hero-content">
           <div className="md:max-w-md md:min-w-md">
-            {currentLayout === 'todo' && !editId && !deleteId && (
+            {currentLayout === 'todo' && !editId && (
               <TodoList
                 tasks={tasks}
                 setEditId={setEditId}
                 setDeleteId={setDeleteId}
               />
             )}
-            {currentLayout === 'addNew' && !editId && !deleteId && (
+            {currentLayout === 'addNew' && !editId && (
               <AddTask
                 tasks={tasks}
                 setTasks={setTasks}
                 setCurrentLayout={setCurrentLayout}
               />
             )}
-            {(editId || deleteId) && (
+            {editId && (
               <AddTask
                 tasks={tasks}
                 setTasks={setTasks}
@@ -63,7 +81,7 @@ function App() {
         </div>
       </div>
       <div className="fab">
-        {currentLayout !== 'addNew' && (
+        {currentLayout === 'todo' && !editId && (
           <button
             className="btn btn-lg btn-circle btn-primary"
             onClick={() => setCurrentLayout('addNew')}
@@ -73,6 +91,7 @@ function App() {
         )}
       </div>
       <Footer />
+      <Modal onConfirmDelete={onConfirmDelete} />
     </>
   );
 }

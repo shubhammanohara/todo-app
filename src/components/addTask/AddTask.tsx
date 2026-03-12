@@ -73,6 +73,7 @@ const AddTask: React.FC<AddTaskProps> = ({
       status={status}
       setStatus={setStatus}
       onAdd={onAdd}
+      editId={editId}
       onCancel={() => {
         setCurrentLayout('todo');
         setEditId && setEditId('');

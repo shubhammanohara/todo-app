@@ -22,7 +22,7 @@ const Layout: React.FC<LayoutProps> = ({
     <>
       <div className="group card card-side card-sm border-b border-base-200 rounded-none w-full">
         <div className="avatar avatar-placeholder block top-2">
-          <div className="bg-neutral text-neutral-content w-12 rounded-full">
+          <div className="bg-primary text-neutral-content w-12 rounded-full">
             <span className="text-3xl">{title.charAt(0).toUpperCase()}</span>
           </div>
         </div>

@@ -1,8 +1,9 @@
 interface LayoutProps {
   setSearch: React.Dispatch<React.SetStateAction<string>>;
+  disabled?: boolean;
 }
 
-const Layout: React.FC<LayoutProps> = ({ setSearch }) => {
+const Layout: React.FC<LayoutProps> = ({ setSearch, disabled }) => {
   return (
     <div className="p-2">
       <label className="input w-full">
@@ -25,6 +26,7 @@ const Layout: React.FC<LayoutProps> = ({ setSearch }) => {
         <input
           type="search"
           placeholder="Search"
+          disabled={disabled}
           onChange={(e) => setSearch(e.target.value)}
         />
       </label>

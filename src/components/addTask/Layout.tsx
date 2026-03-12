@@ -10,6 +10,7 @@ interface LayoutProps {
   setStatus: React.Dispatch<React.SetStateAction<TaskStatus | undefined>>;
   onAdd: () => void;
   onCancel: () => void;
+  editId?: string;
 }
 
 const Layout: React.FC<LayoutProps> = ({
@@ -21,6 +22,7 @@ const Layout: React.FC<LayoutProps> = ({
   setStatus,
   onAdd,
   onCancel,
+  editId,
 }) => {
   return (
     <div className="p-4">
@@ -61,7 +63,7 @@ const Layout: React.FC<LayoutProps> = ({
           Cancel
         </button>
         <button className="btn btn-primary" onClick={onAdd}>
-          Add
+          {editId ? 'Update' : 'Add'}
         </button>
       </div>
     </div>
