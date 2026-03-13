@@ -32,7 +32,7 @@ const Layout: React.FC<LayoutProps> = ({
           type="checkbox"
           className="theme-controller"
           value="synthwave"
-          checked={theme === 'synthwave'}
+          checked={theme === 'corporate'}
           onChange={toggleTheme}
         />
         <SunIcon className="swap-off fill-current" />
